@@ -1,0 +1,120 @@
+.div-global {
+  background-color: #e0c4ae;
+  display: flex;
+  gap: 20px;
+  color: #000;
+  font-weight: 400;
+  white-space: nowrap;
+  padding: 0 80px 0 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  .div-global {
+    flex-wrap: wrap;
+    padding-right: 20px;
+    white-space: initial;
+  }
+}
+
+.div-titre {
+  display: flex;
+  gap: 15px;
+  font-size: 30px;
+  margin: auto 0;
+}
+
+@media (max-width: 991px) {
+  .div-titre {
+    white-space: initial;
+  }
+}
+
+.div-nom {
+  font-family: Myanmar Khyay, sans-serif;
+  border-radius: 63px;
+  background-color: rgba(176, 151, 131, 0.41);
+  justify-content: center;
+  padding: 11px 25px;
+}
+@media (max-width: 991px) {
+  .div-nom {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.div-barre {
+  border-radius: 42px;
+  background-color: rgba(0, 0, 0, 0.51);
+  width: 3px;
+  height: 38px;
+  margin: auto 0;
+}
+.div-menu {
+  display: flex;
+  gap: 0px;
+  font-size: 25px;
+}
+@media (max-width: 991px) {
+  .div-menu {
+    flex-wrap: wrap;
+    white-space: initial;
+  }
+}
+.div-creatation {
+  font-family: Myanmar Khyay, sans-serif;
+  border-radius: 18px;
+  background-color: #e0c4ae;
+  justify-content: center;
+  padding: 28px 50px;
+}
+.div-creatation:hover {
+  background-color: #c3e6d4;
+}
+
+@media (max-width: 991px) {
+  .div-creatation {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+
+
+.div-modeles {
+  font-family: Myanmar Khyay, sans-serif;
+  background-color: #e0c4ae;
+  border-radius: 18px;
+  justify-content: center;
+  padding: 28px 44px;
+}
+.div-modeles:hover {
+  background-color: #c3e6d4;
+}
+
+@media (max-width: 991px) {
+  .div-modeles {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.div-explication {
+  font-family: Myanmar Khyay, sans-serif;
+  background-color: #e0c4ae;
+  border-radius: 18px;
+  justify-content: center;
+  padding: 26px 38px;
+}
+
+.div-explication:hover {
+  background-color: #c3e6d4;
+}
+
+@media (max-width: 991px) {
+  .div-explication {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
