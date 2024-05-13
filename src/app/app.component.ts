@@ -5,11 +5,12 @@ import {ButtonModule} from "primeng/button";
 import {ButtonWithIconComponent} from "./components/button-with-icon/button-with-icon.component";
 import {MyComponentModule} from "./components/header/header.component";
 import {SlideBarComponent} from "./components/slide-bar/slide-bar.component";
+import {HomeComponent} from "./pages/home/home.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ButtonComponent, ButtonModule, ButtonWithIconComponent, MyComponentModule, SlideBarComponent],
+  imports: [RouterOutlet, ButtonComponent, ButtonModule, ButtonWithIconComponent, MyComponentModule, SlideBarComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

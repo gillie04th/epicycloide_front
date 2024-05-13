@@ -1,0 +1,28 @@
+h1 {
+  margin-top: 200px;
+  text-align: center;
+  color: #000000;
+  font-size: 32px;
+}
+.home-body{
+  font-family: Myanmar Khyay, sans-serif;
+}
+.nomApplication{
+  margin-top: -10px;
+  font-size: 64px;
+  text-align: center;
+  color: #E1918E;
+}
+.slogan{
+  margin-top: -45px;
+  font-size: 20px;
+  text-align: center;
+  color: #000000;
+  font-family: Myanmar Khyay, sans-serif;
+}
+
+.home-image{
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+}
