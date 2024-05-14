@@ -4,17 +4,17 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "hearder-component",
+  selector: "header-component",
   encapsulation: ViewEncapsulation.None,
   templateUrl: './header.component.html',
   standalone: true,
   styleUrls: ['./header.component.css']
 })
-export class HeederComponent {}
+export class HeaderComponent {}
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, HeederComponent],
-  exports: [HeederComponent],
+  imports: [CommonModule, HeaderComponent],
+  exports: [HeaderComponent],
 })
 export class MyComponentModule {}
