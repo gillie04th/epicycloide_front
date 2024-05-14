@@ -8,6 +8,6 @@ import {Component, Input} from '@angular/core';
   styleUrl: './card-modele-predefini.component.css'
 })
 export class CardModelePredefiniComponent {
-  @Input() pathImg: string = "../../../assets/Epicycloid1a.png" ;
-  @Input() titleModele: string = "q = 1" ;
+  @Input() pathImg: string | undefined ;
+  @Input() titleModele: string | undefined;
 }
