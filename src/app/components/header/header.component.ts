@@ -2,7 +2,7 @@ import {NgModule, ViewEncapsulation} from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { Component } from "@angular/core";
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {ExplicationComponent} from "../../pages/explication/explication.component";
 
 @Component({
@@ -11,7 +11,9 @@ import {ExplicationComponent} from "../../pages/explication/explication.componen
   templateUrl: './header.component.html',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    RouterOutlet,
+    RouterLinkActive
   ],
   styleUrls: ['./header.component.css']
 })

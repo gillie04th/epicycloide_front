@@ -4,8 +4,14 @@ import {ExplicationComponent} from "./pages/explication/explication.component";
 import {NgModule} from "@angular/core";
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'explication', component: ExplicationComponent }
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'explication',
+    component: ExplicationComponent
+  }
 ];
 
 @NgModule({
