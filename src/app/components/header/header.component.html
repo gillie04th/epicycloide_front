@@ -1,11 +1,12 @@
-<div class="div-global">
+<div class="div-global" routerLink="/">
   <div class="div-titre">
-    <div class="div-nom">Pépïd</div>
+    <div class="div-nom"><a routerLink="/" routerLinkActive="active">Pépïd</a></div>
     <div class="div-barre"></div>
   </div>
   <div class="div-menu">
     <div class="div-creatation">Création</div>
     <div class="div-modeles">Modèles</div>
-    <div class="div-explication">Explication</div>
+    <div class="div-explication"> <a routerLink="/explication" routerLinkActive="active">Explication</a></div>
   </div>
 </div>
+<router-outlet></router-outlet>

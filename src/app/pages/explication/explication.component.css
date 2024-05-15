@@ -1,0 +1,30 @@
+.explication-body{
+  font-family: Myanmar Khyay, sans-serif;
+  font-size: 20px;
+  text-align: center;
+}
+
+
+.explication{
+  margin-top: 140px;
+  justify-content: center;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 50px;
+}
+
+ul{
+  list-style-type: none;
+  margin-bottom: 50px;
+}
+.p-epi{
+  color: #e15e6e;
+}
+
+.caluculx{
+  color: #e15e6e;
+}
+
+.caluculy{
+  color: #e15e6e;
+}

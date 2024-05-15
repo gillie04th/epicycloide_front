@@ -11,7 +11,10 @@
   left: 0;
   width: 100%;
 }
-
+a{
+  text-decoration: none;
+  color: #000;
+}
 @media (max-width: 991px) {
   .div-global {
     flex-wrap: wrap;
