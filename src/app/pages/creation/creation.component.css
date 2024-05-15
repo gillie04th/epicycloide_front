@@ -1,0 +1,43 @@
+.creation-body {
+  margin: auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 10px;
+  /*grid-auto-rows: minmax(10vh, auto);*/
+  /*height: max-content;*/
+}
+
+.viewer {
+  grid-column: 1/4;
+
+  border: 1px #E1918E;
+  border-radius: 20px;
+
+  align-self: stretch;
+  justify-self: stretch;
+}
+
+.epicycloid-chart {
+  width: 600px;
+}
+
+.panel-params {
+  grid-column: 4;
+
+  background-color: #E1918E;
+  border-radius: 20px;
+
+  padding: 12px;
+
+  align-self: stretch;
+  justify-self: stretch;
+}
+
+.panel-step-by-step {
+  display: grid;
+}
+
+.buttons-add-remove {
+  display: grid;
+}
