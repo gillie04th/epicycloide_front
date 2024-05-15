@@ -5,7 +5,7 @@ import {ChartModule} from "primeng/chart";
 import {Chart} from "chart.js";
 
 @Component({
-  selector: 'app-chart',
+  selector: 'chart',
   templateUrl: './chart.component.html',
   standalone: true,
   imports: [

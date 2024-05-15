@@ -20,7 +20,7 @@ export class ApiService {
   }
 
   getEpicycloidCoordinates(id: number, precision: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/epicycloid/${id}/${precision}`);
+    return this.http.get<any>(`${this.apiUrl}/epicycloid/${id}/coordinates/${precision}`);
   }
 
   getEpicycloidByName(name: string): Observable<any> {
