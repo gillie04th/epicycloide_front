@@ -1,0 +1,41 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ApiService {
+
+  apiUrl = 'http://localhost:8080';
+
+  constructor(private http: HttpClient) { }
+
+  getAllEpicycloid(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/epicycloid`);
+  }
+
+  getEpicycloidById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/epicycloid/${id}`);
+  }
+
+  getEpicycloidCoordinates(id: number, precision: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/epicycloid/${id}/${precision}`);
+  }
+
+  getEpicycloidByName(name: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/epicycloid/${name}`);
+  }
+
+  addEpicycloid(epicycloid: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/epicycloid`, epicycloid);
+  }
+
+  updateEpicycloid(id: number, epicycloid: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/epicycloid/${id}`, epicycloid);
+  }
+
+  deleteEpicycloid(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/v/${id}`);
+  }
+}
