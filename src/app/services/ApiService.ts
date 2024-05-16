@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {EpicycloidModel} from "../models/epicycloid.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getAllEpicycloid(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/epicycloid`);
+  getAllEpicycloid(): Observable<EpicycloidModel[]> {
+    return this.http.get<EpicycloidModel[]>(`${this.apiUrl}/epicycloid`);
   }
 
   getEpicycloidById(id: number): Observable<any> {
