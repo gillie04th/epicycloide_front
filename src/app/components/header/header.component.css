@@ -6,9 +6,6 @@
   font-weight: 400;
   white-space: nowrap;
   padding: 0 80px 0 15px;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
 }
 a{
@@ -67,19 +64,19 @@ a{
     white-space: initial;
   }
 }
-.div-creatation {
+.div-creation {
   font-family: Myanmar Khyay, sans-serif;
   border-radius: 18px;
   background-color: #e0c4ae;
   justify-content: center;
   padding: 28px 50px;
 }
-.div-creatation:hover {
+.div-creation:hover {
   background-color: #c3e6d4;
 }
 
 @media (max-width: 991px) {
-  .div-creatation {
+  .div-creation {
     white-space: initial;
     padding: 0 20px;
   }
@@ -108,7 +105,7 @@ a{
   background-color: #e0c4ae;
   border-radius: 18px;
   justify-content: center;
-  padding: 26px 38px;
+  padding: 28px 44px;
 }
 
 .div-explication:hover {
