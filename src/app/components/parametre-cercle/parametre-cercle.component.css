@@ -2,16 +2,20 @@
   border-radius: 18px;
   background-color: #f4f0e5;
   display: flex;
+  justify-content: center;
+  align-items: end;
   flex-direction: column;
   padding: 30px 15px;
 }
 .info-section {
   display: flex;
-  margin-top: 20px;
+  margin: 10px 0;
   gap: 20px;
   align-items: center;
 }
 
 .input-field {
-  border-radius: 10px;
+  border-radius: 15px;
+  height: 30px;
+  padding: 0 15px;
 }

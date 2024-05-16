@@ -1,9 +1,8 @@
 /* button.component.css */
-button {
-  border-radius: 18px;
+.custom-button {
+  border-radius: 60px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   display: flex;
-  max-width: 100px;
   font-size: 15px;
   border: none;
   color: #000;
@@ -15,6 +14,6 @@ button {
   padding: 6px 16px;
 }
 
-button:hover {
+.custom-button:hover {
   background-color: #E0C4AE;
 }

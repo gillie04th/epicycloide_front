@@ -31,6 +31,7 @@ p-slider .p-slider-handle:focus {
 }
 
 .custom-slider{
+  width: 100%;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
