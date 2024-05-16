@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {ExplicationComponent} from "../../pages/explication/explication.component";
+import {ModelesComponent} from "../../pages/modeles/modeles.component";
 
 @Component({
   selector: "header-component",
@@ -20,6 +21,7 @@ import {ExplicationComponent} from "../../pages/explication/explication.componen
 export class HeaderComponent {
   protected readonly MyComponentModule = MyComponentModule;
   protected readonly ExplicationComponent = ExplicationComponent;
+  protected readonly ModelesComponent = ModelesComponent;
 }
 
 @NgModule({
