@@ -1,11 +1,12 @@
 <div class="container">
-  <div class="image-section">
-    <img
-      src={{pathImg}}
-      width="200px"
-      alt="épicycloïde">
-  </div>
-  <div class="title-section">
-    {{titleModele}}
-  </div>
+  <a routerLink="/creation" routerLinkActive="active">
+    <div>
+      <div class="chart">
+        <chart id={{idChart}} nameEpicycloid={{titleModele}}></chart>
+      </div>
+      <div class="title-section">
+        {{titleModele}}
+      </div>
+    </div>
+  </a>
 </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import {ApiService} from "../../services/ApiService";
 import {Subscription} from 'rxjs';
 import {ChartModule} from "primeng/chart";
@@ -19,13 +19,17 @@ export class ChartComponent implements OnInit, OnDestroy {
   public data: any[] | null;
   private subscription: Subscription | null;
 
+  @Input() id: string = "1";
+  @Input() nameEpicycloid: string = "epicycloidChart"
+
   constructor(private apiService: ApiService) {
     this.data = null;
     this.subscription = null;
   }
 
   ngOnInit(): void {
-    this.subscription = this.apiService.getEpicycloidCoordinates(111, 5000).subscribe(data => {
+    let num: number = +this.id;
+    this.subscription = this.apiService.getEpicycloidCoordinates(num, 5000).subscribe(data => {
       this.data = this.prepareChartData(data);
       this.createChart();
     });
@@ -42,8 +46,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   }
 
   createChart(): void {
-
-    this.chart = new Chart("epicycloidChart", {
+    this.chart = new Chart(this.nameEpicycloid, {
       type: 'scatter',
       data: {
         datasets: [{
