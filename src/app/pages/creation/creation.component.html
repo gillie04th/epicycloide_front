@@ -2,7 +2,7 @@
 
   <div class="viewer">
 
-    <div class="epicycloid-chart">
+    <div id="chart-container" class="epicycloid-chart">
 
       <chart></chart>
 
@@ -13,8 +13,9 @@
       <div class="slide-bar">
         <slide-bar></slide-bar>
       </div>
+
       <div>
-        <custom-button buttonName="Go"></custom-button>
+        <custom-button buttonName="Go" (click)="generatePoints()"></custom-button>
       </div>
 
     </div>
@@ -23,19 +24,22 @@
 
   <div class="panel-params">
 
-    <div class="slider">
+    <div class="circle-parameter">
 
-      <parametre-cercle></parametre-cercle>
+      @for (epicycloid of epicycloids; track epicycloid) {
+        <parametre-cercle [epicycloid]="epicycloid"></parametre-cercle>
+      }
 
     </div>
 
     <div class="buttons-add-remove">
 
       <div>
-        <custom-button buttonName="Ajouter"></custom-button>
+        <custom-button buttonName="Ajouter" (clickHandler)="addEpicycloid()"></custom-button>
       </div>
+
       <div>
-        <custom-button buttonName="Supprimer"></custom-button>
+        <custom-button buttonName="Supprimer" (clickHandler)="removeEpicycloid()" [disabled]="epicycloids.length <= 1"></custom-button>
       </div>
 
     </div>

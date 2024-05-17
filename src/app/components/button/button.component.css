@@ -12,8 +12,15 @@
   font-family: Myanmar Khyay, sans-serif;
   background-color: #e15e6e;
   padding: 6px 16px;
+  outline: none;
 }
 
 .custom-button:hover {
   background-color: #E0C4AE;
+}
+
+.p-button:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: none;
 }
