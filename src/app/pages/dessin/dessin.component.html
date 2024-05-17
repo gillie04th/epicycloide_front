@@ -1,0 +1,24 @@
+<div class="dessin-body">
+
+  <div class="viewer">
+
+    <div id="draw-container" class="draw-zone">
+      <canvas #canvas
+              (mousedown)="onMouseDown($event)"
+              (mousemove)="onMouseMove($event)"
+              (mouseup)="onMouseUp()"
+              (mouseleave)="onMouseLeave()"
+      ></canvas>
+
+    </div>
+
+      <div class="button-clear">
+        <custom-button (click)="clearCanvas()" buttonName="Effacer" ></custom-button>
+      </div>
+
+  </div>
+</div>
+
+
+
+

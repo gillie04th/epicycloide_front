@@ -4,6 +4,7 @@ import {ExplicationComponent} from "./pages/explication/explication.component";
 import {NgModule} from "@angular/core";
 import {CreationComponent} from "./pages/creation/creation.component";
 import {ModelesComponent} from "./pages/modeles/modeles.component";
+import {DessinComponent} from "./pages/dessin/dessin.component";
 
 export const routes: Routes = [
   {
@@ -21,6 +22,10 @@ export const routes: Routes = [
   {
     path: 'explication',
     component: ExplicationComponent
+  },
+  {
+    path: 'dessin',
+    component: DessinComponent
   }
 ];
 

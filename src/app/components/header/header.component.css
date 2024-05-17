@@ -118,3 +118,23 @@ a{
     padding: 0 20px;
   }
 }
+
+.div-dessin {
+  font-family: Myanmar Khyay, sans-serif;
+  background-color: #e0c4ae;
+  border-radius: 18px;
+  justify-content: center;
+  padding: 28px 44px;
+}
+
+.div-dessin:hover {
+  background-color: #c3e6d4;
+}
+
+@media (max-width: 991px) {
+  .div-dessin {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+
