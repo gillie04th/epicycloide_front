@@ -14,7 +14,7 @@ import {EpicycloidModel} from "../../models/epicycloid.model";
 export class ParametreCercleComponent implements OnInit {
 
   @Input() epicycloid: EpicycloidModel | any;
-  @Output('userChange') emitter: EventEmitter<EpicycloidModel> = new EventEmitter<EpicycloidModel>();
+  @Output('epicycloidChange') emitter: EventEmitter<EpicycloidModel> = new EventEmitter<EpicycloidModel>();
 
   ngOnInit(): void {
   }
