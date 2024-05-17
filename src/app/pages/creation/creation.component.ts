@@ -1,10 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HeaderComponent} from "../../components/header/header.component";
 import {ParametreCercleComponent} from "../../components/parametre-cercle/parametre-cercle.component";
 import {ChartComponent} from "../../components/chart/chart.component";
 import {SlideBarComponent} from "../../components/slide-bar/slide-bar.component";
 import {ButtonComponent} from "../../components/button/button.component";
 import {Epicycloid, EpicycloidModel} from "../../models/epicycloid.model";
+import {ActivatedRoute} from "@angular/router";
+import {ApiService} from "../../services/ApiService";
 
 @Component({
   imports: [
@@ -24,13 +26,23 @@ export class CreationComponent implements OnInit {
   @ViewChild(ChartComponent) chartComponent: ChartComponent | undefined;
   epicycloids: Array<EpicycloidModel> = new Array<EpicycloidModel>();
 
+  idChart: string | null = null;
+
+  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+
   addEpicycloid () {
     this.epicycloids.push(new Epicycloid(0, 0));
     // console.log(this.epicycloids);
   }
 
   ngOnInit() {
-    this.addEpicycloid();
+    this.idChart  = this.route.snapshot.paramMap.get('id');
+    if(this.idChart == null){
+      this.addEpicycloid();
+    }
+    else{
+      this.addModele(this.idChart);
+    }
   }
 
   removeEpicycloid() {
@@ -58,4 +70,18 @@ export class CreationComponent implements OnInit {
 
   }
 
+  addModele(idChart: string){
+    let idChartNb: number = +idChart;
+
+    this.apiService.getEpicycloidById(idChartNb).subscribe(
+      (epicycloid: EpicycloidModel) => {
+        this.chartComponent?.requestData(epicycloid)
+        while(epicycloid.rolling != undefined){
+          this.epicycloids.push(new Epicycloid(epicycloid.radius, epicycloid.frequency));
+          epicycloid = epicycloid.rolling;
+        }
+        this.epicycloids.push(new Epicycloid(epicycloid.radius, epicycloid.frequency));
+      }
+    )
+  }
 }
