@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HeaderComponent} from "../../components/header/header.component";
 import {ParametreCercleComponent} from "../../components/parametre-cercle/parametre-cercle.component";
 import {ChartComponent} from "../../components/chart/chart.component";
@@ -24,16 +24,13 @@ import {ApiService} from "../../services/ApiService";
 export class CreationComponent implements OnInit {
 
   @ViewChild(ChartComponent) chartComponent: ChartComponent | undefined;
+  @ViewChild(SlideBarComponent) slideBarComponent: SlideBarComponent | undefined;
   epicycloids: Array<EpicycloidModel> = new Array<EpicycloidModel>();
 
   idChart: string | null = null;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
-  addEpicycloid () {
-    this.epicycloids.push(new Epicycloid(0, 0));
-    // console.log(this.epicycloids);
-  }
 
   ngOnInit() {
     this.idChart  = this.route.snapshot.paramMap.get('id');
@@ -43,6 +40,11 @@ export class CreationComponent implements OnInit {
     else{
       this.addModele(this.idChart);
     }
+  }
+
+  addEpicycloid () {
+    this.epicycloids.push(new Epicycloid(0, 0));
+    // console.log(this.epicycloids);
   }
 
   removeEpicycloid() {
@@ -66,8 +68,11 @@ export class CreationComponent implements OnInit {
 
     epicycloid.rolling = rolling;
 
-    this.chartComponent?.regenerateChart(epicycloid)
+    this.chartComponent?.requestData(epicycloid)
+  }
 
+  stepView() {
+    this.chartComponent?.createChart(this.slideBarComponent?.getValue());
   }
 
   addModele(idChart: string){

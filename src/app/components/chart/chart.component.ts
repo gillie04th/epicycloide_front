@@ -16,13 +16,14 @@ import {EpicycloidModel} from "../../models/epicycloid.model";
 })
 export class ChartComponent implements OnInit, OnDestroy {
 
-  public chart: any;
-  public data: any[] | null;
-  private subscription: Subscription | null;
+  public static nbPoints: number = 5000;
 
   @Input({transform: numberAttribute}) id: number = 0;
   @Input() nameEpicycloid: string = "epicycloidChart"
 
+  public chart: any;
+  public data: any[] | null;
+  private subscription: Subscription | null;
 
   constructor(private apiService: ApiService) {
     this.data = null;
@@ -39,17 +40,19 @@ export class ChartComponent implements OnInit, OnDestroy {
     }
   }
 
-  requestData(epicycloid: EpicycloidModel | null = null)  {
+  public requestData(epicycloid: EpicycloidModel | null = null) {
     if (this.id != 0) {
       this.subscription = this.apiService.getEpicycloidCoordinatesById(this.id, 720).subscribe(data => {
         this.data = this.prepareChartData(data);
         this.createChart();
       });
     } else {
-      this.subscription = this.apiService.getEpicycloidCoordinates(<EpicycloidModel>epicycloid, 5000).subscribe(data => {
-        this.data = this.prepareChartData(data);
-        this.createChart();
-      });
+      if (epicycloid) {
+        this.subscription = this.apiService.getEpicycloidCoordinates(<EpicycloidModel>epicycloid, ChartComponent.nbPoints).subscribe(data => {
+          this.data = this.prepareChartData(data);
+          this.createChart();
+        });
+      }
     }
   }
 
@@ -57,66 +60,76 @@ export class ChartComponent implements OnInit, OnDestroy {
     return data.sort((a, b) => a.t - b.t).map(item => ({x: item.x, y: item.y}));
   }
 
-  public createChart(): void {
-    this.chart = new Chart(this.nameEpicycloid, {
-      type: 'scatter',
-      data: {
-        datasets: [{
-          data: this.data,
-          borderColor: 'rgb(229,67,67)',
-          showLine: true,
-          tension: 0.5,
-        }]
-      },
-      options: {
-        aspectRatio: 1,
-        scales: {
-          x: {
-            grid: {
-              lineWidth: 0,
-              color: "rgba(0, 0, 0, 0)",
-            },
-            border: {
-              width: this.id == 0 ? 1 : 0,
-            },
-            ticks: {
-              display: this.id == 0,
-            }
+  prepareChartsOptions() {
+    return {
+      aspectRatio: 1,
+      scales: {
+        x: {
+          grid: {
+            lineWidth: 0,
+            color: "rgba(0, 0, 0, 0)",
           },
-          y: {
-            grid: {
-              lineWidth: 0,
-              color: "rgba(0, 0, 0, 0)",
-            },
-            border: {
-              width: this.id == 0 ? 1 : 0,
-            },
-            ticks: {
-              display: this.id == 0,
-            }
+          border: {
+            width: this.id == 0 ? 1 : 0,
+          },
+          ticks: {
+            display: this.id == 0,
           }
         },
-        elements: {
-          point: {
-            radius: 0,
-          }
-        },
-        plugins: {
-          legend: {
-            display: false,
+        y: {
+          grid: {
+            lineWidth: 0,
+            color: "rgba(0, 0, 0, 0)",
           },
-          tooltip: {
-            enabled: false,
+          border: {
+            width: this.id == 0 ? 1 : 0,
+          },
+          ticks: {
+            display: this.id == 0,
           }
         }
+      },
+      elements: {
+        point: {
+          radius: 0,
+        }
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          enabled: false,
+        }
       }
-    });
+    };
   }
 
-  regenerateChart(epicycloid : EpicycloidModel | null = null) : void {
-    if(this.chart) {
-      this.chart.destroy();
+  public createChart( limit: number = ChartComponent.nbPoints): void {
+    if (!this.chart) {
+      this.chart = new Chart(this.nameEpicycloid, {
+        type: 'scatter',
+        data: {
+          datasets: [{
+            data: this.data?.slice(0, limit),
+            borderColor: 'rgb(229,67,67)',
+            showLine: true,
+            tension: 0.5,
+          }]
+        },
+        options: this.prepareChartsOptions()
+      });
+    } else {
+      this.chart.data.datasets[0].data = this.data?.slice(0, limit);
+
+      if(this.data){
+        this.chart.options.scales.x.min = Math.min(...this.data.map(item => item.x)) - 1;
+        this.chart.options.scales.x.max = Math.max(...this.data.map(item => item.x)) + 1;
+        this.chart.options.scales.y.min = Math.min(...this.data.map(item => item.y)) - 1;
+        this.chart.options.scales.y.max = Math.max(...this.data.map(item => item.y)) + 1;
+      }
+
+      this.chart.update('none');
     }
-    this.requestData(epicycloid);
   }
 }
