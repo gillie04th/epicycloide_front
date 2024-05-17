@@ -1,6 +1,5 @@
 .creation-body {
   display: flex;
-  /*flex-wrap: wrap;*/
   justify-content: space-around;
   align-items: stretch;
   padding: 20px;
@@ -37,6 +36,10 @@
   border-radius: 20px;
 
   padding: 20px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 73vh;
 }
 
 .panel-step-by-step {
@@ -59,7 +62,7 @@
   align-items: stretch;
 }
 
-.slider {
+.circle-parameter {
   margin: 0;
 }
 

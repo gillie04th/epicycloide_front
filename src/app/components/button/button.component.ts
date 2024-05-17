@@ -1,6 +1,7 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {ButtonModule} from "primeng/button";
 import {NgStyle} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'custom-button',
@@ -16,8 +17,10 @@ import {NgStyle} from "@angular/common";
 
 export class ButtonComponent {
   @Input() buttonName: any ;
+  @Input() disabled: boolean = false;
+  @Output() clickHandler: EventEmitter<void> = new EventEmitter();
 
-  onClickHandler() {
-    console.log('Button clicked');
+  onClick() {
+    this.clickHandler.emit();
   }
 }

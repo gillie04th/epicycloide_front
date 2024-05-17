@@ -1,8 +1,9 @@
-import {Component, OnInit, OnDestroy, Input} from '@angular/core';
+import {Component, OnInit, OnDestroy, Input, numberAttribute} from '@angular/core';
 import {ApiService} from "../../services/ApiService";
 import {Subscription} from 'rxjs';
 import {ChartModule} from "primeng/chart";
 import {Chart} from "chart.js";
+import {EpicycloidModel} from "../../models/epicycloid.model";
 
 @Component({
   selector: 'chart',
@@ -19,8 +20,9 @@ export class ChartComponent implements OnInit, OnDestroy {
   public data: any[] | null;
   private subscription: Subscription | null;
 
-  @Input() id: string = "1";
+  @Input({transform: numberAttribute}) id: number = 0;
   @Input() nameEpicycloid: string = "epicycloidChart"
+
 
   constructor(private apiService: ApiService) {
     this.data = null;
@@ -28,11 +30,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    let num: number = +this.id;
-    this.subscription = this.apiService.getEpicycloidCoordinates(num, 5000).subscribe(data => {
-      this.data = this.prepareChartData(data);
-      this.createChart();
-    });
+    this.requestData();
   }
 
   ngOnDestroy(): void {
@@ -41,11 +39,25 @@ export class ChartComponent implements OnInit, OnDestroy {
     }
   }
 
-  prepareChartData(data: any[]): any[] {
-    return data.sort((a,b) => a.t - b.t).map(item => ({x: item.x, y: item.y}));
+  requestData(epicycloid: EpicycloidModel | null = null)  {
+    if (this.id != 0) {
+      this.subscription = this.apiService.getEpicycloidCoordinatesById(this.id, 720).subscribe(data => {
+        this.data = this.prepareChartData(data);
+        this.createChart();
+      });
+    } else {
+      this.subscription = this.apiService.getEpicycloidCoordinates(<EpicycloidModel>epicycloid, 5000).subscribe(data => {
+        this.data = this.prepareChartData(data);
+        this.createChart();
+      });
+    }
   }
 
-  createChart(): void {
+  prepareChartData(data: any[]): any[] {
+    return data.sort((a, b) => a.t - b.t).map(item => ({x: item.x, y: item.y}));
+  }
+
+  public createChart(): void {
     this.chart = new Chart(this.nameEpicycloid, {
       type: 'scatter',
       data: {
@@ -64,12 +76,24 @@ export class ChartComponent implements OnInit, OnDestroy {
               lineWidth: 0,
               color: "rgba(0, 0, 0, 0)",
             },
+            border: {
+              width: this.id == 0 ? 1 : 0,
+            },
+            ticks: {
+              display: this.id == 0,
+            }
           },
           y: {
             grid: {
               lineWidth: 0,
               color: "rgba(0, 0, 0, 0)",
             },
+            border: {
+              width: this.id == 0 ? 1 : 0,
+            },
+            ticks: {
+              display: this.id == 0,
+            }
           }
         },
         elements: {
@@ -87,5 +111,12 @@ export class ChartComponent implements OnInit, OnDestroy {
         }
       }
     });
+  }
+
+  regenerateChart(epicycloid : EpicycloidModel | null = null) : void {
+    if(this.chart) {
+      this.chart.destroy();
+    }
+    this.requestData(epicycloid);
   }
 }
