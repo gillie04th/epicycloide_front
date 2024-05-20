@@ -1,7 +1,9 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ButtonComponent} from "../../components/button/button.component";
 import {ChartComponent} from "../../components/chart/chart.component";
 import {SlideBarComponent} from "../../components/slide-bar/slide-bar.component";
+import {SliderModule} from "primeng/slider";
+import {PaginatorModule} from "primeng/paginator";
 
 @Component({
   selector: 'app-dessin',
@@ -9,14 +11,18 @@ import {SlideBarComponent} from "../../components/slide-bar/slide-bar.component"
   imports: [
     ButtonComponent,
     ChartComponent,
-    SlideBarComponent
+    SlideBarComponent,
+    SliderModule,
+    PaginatorModule
   ],
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './dessin.component.html',
   styleUrl: './dessin.component.css'
 })
 
 
 export class DessinComponent implements AfterViewInit {
+  value!: number;
 
   @ViewChild('canvas', { static: false })  canvas: ElementRef<HTMLCanvasElement> | any;
   private ctx: CanvasRenderingContext2D | any;
