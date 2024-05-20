@@ -30,7 +30,8 @@
   grid-column: 1;
   grid-row: 2 / 4;
 }
-canvas {
+
+.draw-canva {
   cursor: crosshair;
   border:1px solid #000000;
   border-radius: 18px;
@@ -41,6 +42,7 @@ canvas {
   grid-row: 2 /4;
   border: thick double yellow
 }
+
 .del-button {
   grid-column: 1;
   grid-row: 4;

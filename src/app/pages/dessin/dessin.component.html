@@ -2,7 +2,7 @@
   <div class="votre-dessin">Votre Dessin</div>
   <div class="equivalent">L'equivalent en epicycloïde</div>
   <div class="zone-dessin">
-    <canvas #canvas
+    <canvas class="draw-canva" #canvas
             width="930"
             height="750"
             (mousedown)="onMouseDown($event)"
@@ -12,7 +12,9 @@
     ></canvas>
 
   </div>
-  <div class="four">Quatrième zone de ma page web</div>
+  <div class="four">
+    <chart></chart>
+  </div>
   <div class="del-button">
     <custom-button (click)="clearCanvas()" buttonName="Effacer" ></custom-button>
   </div>
