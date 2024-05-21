@@ -28,27 +28,27 @@ export class CreationComponent implements OnInit {
   epicycloids: Array<EpicycloidModel> = new Array<EpicycloidModel>();
 
   idChart: string | null = null;
+  playing: boolean = false;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
-
+  constructor(private route: ActivatedRoute, private apiService: ApiService) {
+  }
 
   ngOnInit() {
-    this.idChart  = this.route.snapshot.paramMap.get('id');
-    if(this.idChart == null){
+    this.idChart = this.route.snapshot.paramMap.get('id');
+    if (this.idChart == null) {
       this.addEpicycloid();
-    }
-    else{
+    } else {
       this.addModele(this.idChart);
     }
   }
 
-  addEpicycloid () {
+  addEpicycloid() {
     this.epicycloids.push(new Epicycloid(0, 0));
     // console.log(this.epicycloids);
   }
 
   removeEpicycloid() {
-    if(this.epicycloids.length > 1){
+    if (this.epicycloids.length > 1) {
       this.epicycloids.pop();
     }
     // console.log(this.epicycloids);
@@ -60,7 +60,7 @@ export class CreationComponent implements OnInit {
     let rolling: EpicycloidModel | undefined = undefined;
 
     this.epicycloids.slice().reverse().forEach((e: EpicycloidModel) => {
-      if(e !== epicycloid) {
+      if (e !== epicycloid) {
         e.rolling = rolling ? rolling : undefined;
         rolling = e;
       }
@@ -75,13 +75,13 @@ export class CreationComponent implements OnInit {
     this.chartComponent?.createChart(this.slideBarComponent?.getValue());
   }
 
-  addModele(idChart: string){
+  addModele(idChart: string) {
     let idChartNb: number = +idChart;
 
     this.apiService.getEpicycloidById(idChartNb).subscribe(
       (epicycloid: EpicycloidModel) => {
         this.chartComponent?.requestData(epicycloid)
-        while(epicycloid.rolling != undefined){
+        while (epicycloid.rolling != undefined) {
           this.epicycloids.push(new Epicycloid(epicycloid.radius, epicycloid.frequency));
           epicycloid = epicycloid.rolling;
         }
@@ -89,4 +89,35 @@ export class CreationComponent implements OnInit {
       }
     )
   }
+
+  backward() {
+    this.slideBarComponent?.setValue(this.slideBarComponent?.getValue() - ChartComponent.nbPoints * 2 / 100);
+    this.chartComponent?.createChart(this.slideBarComponent?.getValue())
+  }
+
+  forward() {
+    this.slideBarComponent?.setValue(this.slideBarComponent?.getValue() + ChartComponent.nbPoints * 2 / 100);
+    this.chartComponent?.createChart(this.slideBarComponent?.getValue())
+  }
+
+  async play() {
+
+    this.playing = true;
+
+    while (this.playing && this.slideBarComponent && this.slideBarComponent?.getValue() < ChartComponent.nbPoints) {
+      this.slideBarComponent?.setValue(this.slideBarComponent?.getValue() + 5);
+      await new Promise(resolve => setTimeout(resolve, 1));
+      this.stepView();
+    }
+
+    this.playing = false;
+    if (this.slideBarComponent && this.slideBarComponent?.getValue() == ChartComponent.nbPoints) {
+      this.slideBarComponent ? this.slideBarComponent.setValue(0) : null;
+    }
+  }
+
+  pause() {
+    this.playing = false;
+  }
+
 }
