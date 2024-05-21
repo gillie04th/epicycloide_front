@@ -4,6 +4,7 @@ import {ChartComponent} from "../../components/chart/chart.component";
 import {SlideBarComponent} from "../../components/slide-bar/slide-bar.component";
 import {SliderModule} from "primeng/slider";
 import {PaginatorModule} from "primeng/paginator";
+import {Point} from "../../models/point.model";
 
 @Component({
   selector: 'app-dessin',
@@ -22,7 +23,8 @@ import {PaginatorModule} from "primeng/paginator";
 
 
 export class DessinComponent implements AfterViewInit {
-  value!: number;
+  value: number = 1;
+  tabPoint: Point[] = [];
 
   @ViewChild('canvas', { static: false })  canvas: ElementRef<HTMLCanvasElement> | any;
   private ctx: CanvasRenderingContext2D | any;
@@ -44,6 +46,7 @@ export class DessinComponent implements AfterViewInit {
   onMouseMove(event: MouseEvent) {
     if (this.drawing) {
       this.ctx.lineTo(event.offsetX, event.offsetY);
+      this.tabPoint.push(new Point(event.offsetX, event.offsetY))
       this.ctx.stroke();
     }
   }
@@ -59,5 +62,12 @@ export class DessinComponent implements AfterViewInit {
 
   clearCanvas() {
     this.ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+    this.tabPoint = [];
+  }
+
+  goEpicycloid() {
+    // envoie value (correspond à la fréquence d'échantillonage) et tab de points
+    console.log(this.tabPoint)
+    console.log(this.value)
   }
 }

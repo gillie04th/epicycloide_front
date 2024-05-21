@@ -1,6 +1,6 @@
 <div class="disposition">
-  <div class="votre-dessin">Votre Dessin</div>
-  <div class="equivalent">L'equivalent en epicycloïde</div>
+  <div class="votre-dessin">Votre dessin</div>
+  <div class="equivalent">L'équivalent en épicycloïde</div>
   <div class="zone-dessin">
     <canvas class="draw-canva" #canvas
             width="930"
@@ -15,10 +15,23 @@
   <div class="four">
     <chart></chart>
   </div>
-  <div class="del-button">
-    <custom-button (click)="clearCanvas()" buttonName="Effacer" ></custom-button>
+  <div class="barre-controle">
+    <div class="del-button">
+      <custom-button (click)="clearCanvas()" buttonName="Effacer" ></custom-button>
+    </div>
+    <div class="txt-echantillonage">
+      <p>Fréquence</p>
+      <p>d'échantillonage</p>
+    </div>
+    <div class="slider">
+      <p-slider [(ngModel)]="value"></p-slider>
+    </div>
+    <div class="val-echantillonage">
+      {{value}}
+    </div>
+    <div class="go-button">
+      <custom-button (click)="goEpicycloid()" buttonName="Go" ></custom-button>
+    </div>
   </div>
-  <div class="slider">
-    <p-slider [(ngModel)]="value"></p-slider>
-  </div>
+
 </div>
