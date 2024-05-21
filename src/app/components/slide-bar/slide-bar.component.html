@@ -3,9 +3,9 @@
     <p-slider [(ngModel)]="value" (onChange)="onChange()" [min]="1" [max]="ChartComponent.nbPoints"></p-slider>
   </div>
   <div class="buttons-slide">
-    <p-button icon="pi pi-step-backward" [rounded]="true" />
-    <p-button icon="pi pi-step-forward" [rounded]="true" />
-    <p-button icon="pi pi-play" [rounded]="true" />
-    <p-button icon="pi pi-pause" [rounded]="true" />
+    <p-button icon="pi pi-step-backward" [rounded]="true" (mousedown)="onBackward()"/>
+    <p-button icon="pi pi-step-forward" [rounded]="true" (mousedown)="onForward()"/>
+    <p-button icon="pi pi-play" [rounded]="true" (click)="onPlay()"/>
+    <p-button icon="pi pi-pause" [rounded]="true" (click)="onPause()"/>
   </div>
 </div>
