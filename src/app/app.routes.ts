@@ -16,6 +16,10 @@ export const routes: Routes = [
     component: CreationComponent
   },
   {
+    path: 'creation/:id',
+    component: CreationComponent
+  },
+  {
     path: 'modeles',
     component: ModelesComponent
   },

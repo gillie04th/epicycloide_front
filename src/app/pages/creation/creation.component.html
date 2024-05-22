@@ -11,7 +11,7 @@
     <div class="panel-step-by-step">
 
       <div class="slide-bar">
-        <slide-bar></slide-bar>
+        <slide-bar (changeHandler)="stepView()" (backwardHandler)="backward()" (forwardHandler)="forward()" (playHandler)="play()" (pauseHandler)="pause()"></slide-bar>
       </div>
 
       <div class="go-btn">
