@@ -1,10 +1,9 @@
 import {AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
-import {ButtonComponent} from "../../components/button/button.component";
 import {ChartComponent} from "../../components/chart/chart.component";
-import {SlideBarComponent} from "../../components/slide-bar/slide-bar.component";
 import {SliderModule} from "primeng/slider";
 import {PaginatorModule} from "primeng/paginator";
 import {Point} from "../../models/point.model";
+import {ButtonComponent} from "../../components/button/button.component";
 
 @Component({
   selector: 'app-dessin',
@@ -12,7 +11,6 @@ import {Point} from "../../models/point.model";
   imports: [
     ButtonComponent,
     ChartComponent,
-    SlideBarComponent,
     SliderModule,
     PaginatorModule
   ],
@@ -25,6 +23,8 @@ import {Point} from "../../models/point.model";
 export class DessinComponent implements AfterViewInit {
   value: number = 1;
   tabPoint: Point[] = [];
+  equation!: string;
+  txt_equation: string = "Formule : ";
 
   @ViewChild('canvas', { static: false })  canvas: ElementRef<HTMLCanvasElement> | any;
   private ctx: CanvasRenderingContext2D | any;
@@ -67,7 +67,7 @@ export class DessinComponent implements AfterViewInit {
 
   goEpicycloid() {
     // envoie value (correspond à la fréquence d'échantillonage) et tab de points
-    console.log(this.tabPoint)
-    console.log(this.value)
+    console.log(this.tabPoint);
+    console.log(this.value);
   }
 }

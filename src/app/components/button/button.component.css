@@ -24,3 +24,9 @@
   outline-offset: 0;
   box-shadow: none;
 }
+  .p-button {
+    color: #000000;
+    background: none;
+    border: 1px;
+    outline-color: transparent;
+  }

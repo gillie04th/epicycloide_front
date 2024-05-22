@@ -60,10 +60,15 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: stretch;
+  cursor: pointer;
 }
 
 .circle-parameter {
   margin: 0;
+}
+
+.go-btn{
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {

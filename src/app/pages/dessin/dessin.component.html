@@ -13,7 +13,12 @@
 
   </div>
   <div class="four">
-    <chart></chart>
+    <div class="zone-equation">
+      <dd>{{txt_equation}}
+    </div>
+    <div class="chart">
+      <chart></chart>
+    </div>
   </div>
   <div class="barre-controle">
     <div class="del-button">
@@ -26,11 +31,13 @@
     <div class="slider">
       <p-slider [(ngModel)]="value"></p-slider>
     </div>
-    <div class="val-echantillonage">
-      {{value}}
+    <div>
+      <input
+        class="input-echantillonage"
+        [(ngModel)]="value"/>
     </div>
     <div class="go-button">
-      <custom-button (click)="goEpicycloid()" buttonName="Go" ></custom-button>
+      <custom-button (click)="goEpicycloid()" buttonName="GO" ></custom-button>
     </div>
   </div>
 
