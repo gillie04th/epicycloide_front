@@ -43,7 +43,7 @@ export class CreationComponent implements OnInit {
   }
 
   addEpicycloid() {
-    this.epicycloids.push(new Epicycloid(0, 0));
+    this.epicycloids.push(new Epicycloid(0, 0, 0));
     // console.log(this.epicycloids);
   }
 
@@ -82,10 +82,10 @@ export class CreationComponent implements OnInit {
       (epicycloid: EpicycloidModel) => {
         this.chartComponent?.requestData(epicycloid)
         while (epicycloid.rolling != undefined) {
-          this.epicycloids.push(new Epicycloid(epicycloid.radius, epicycloid.frequency));
+          this.epicycloids.push(new Epicycloid(epicycloid.radius, epicycloid.frequency, epicycloid.phase));
           epicycloid = epicycloid.rolling;
         }
-        this.epicycloids.push(new Epicycloid(epicycloid.radius, epicycloid.frequency));
+        this.epicycloids.push(new Epicycloid(epicycloid.radius, epicycloid.frequency, epicycloid.phase));
       }
     )
   }
