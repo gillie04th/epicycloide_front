@@ -1,0 +1,44 @@
+<div class="disposition">
+  <div class="votre-dessin">Votre dessin</div>
+  <div class="equivalent">L'équivalent en épicycloïde</div>
+  <div class="zone-dessin">
+    <canvas class="draw-canva" #canvas
+            width="930"
+            height="750"
+            (mousedown)="onMouseDown($event)"
+            (mousemove)="onMouseMove($event)"
+            (mouseup)="onMouseUp()"
+            (mouseleave)="onMouseLeave()"
+    ></canvas>
+
+  </div>
+  <div class="four">
+    <div class="zone-equation">
+      <dd>{{txt_equation}}
+    </div>
+    <div class="chart">
+      <chart></chart>
+    </div>
+  </div>
+  <div class="barre-controle">
+    <div class="del-button">
+      <custom-button (click)="clearCanvas()" buttonName="Effacer" ></custom-button>
+    </div>
+    <div class="txt-echantillonage">
+      <p>Fréquence</p>
+      <p>d'échantillonage</p>
+    </div>
+    <div class="slider">
+      <p-slider [(ngModel)]="value"></p-slider>
+    </div>
+    <div>
+      <input
+        class="input-echantillonage"
+        [(ngModel)]="value"/>
+    </div>
+    <div class="go-button">
+      <custom-button (click)="goEpicycloid()" buttonName="GO" ></custom-button>
+    </div>
+  </div>
+
+</div>

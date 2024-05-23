@@ -5,6 +5,7 @@
   padding: 20px;
   gap: 20px;
   height: 100%;
+  font-family: Myanmar Khyay, sans-serif;
 }
 
 .viewer {
@@ -60,10 +61,15 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: stretch;
+  cursor: pointer;
 }
 
 .circle-parameter {
   margin: 0;
+}
+
+.go-btn{
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
