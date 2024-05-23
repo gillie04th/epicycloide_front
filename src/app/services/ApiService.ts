@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {EpicycloidModel} from "../models/epicycloid.model";
+import {Point} from "chart.js";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,10 @@ export class ApiService {
 
   getEpicycloidCoordinates(epicycloid: EpicycloidModel, precision: number): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/epicycloid/coordinates/${precision}`, epicycloid);
+  }
+
+  getTransformation(points: Point[], precision: number): Observable<EpicycloidModel> {
+    return this.http.post<EpicycloidModel>(`${this.apiUrl}/epicycloid/transform/${precision}`, points);
   }
 
   getEpicycloidByName(name: string): Observable<any> {

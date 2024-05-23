@@ -4,6 +4,7 @@ import {SliderModule} from "primeng/slider";
 import {PaginatorModule} from "primeng/paginator";
 import {Point} from "../../models/point.model";
 import {ButtonComponent} from "../../components/button/button.component";
+import {ApiService} from "../../services/ApiService";
 
 @Component({
   selector: 'app-dessin',
@@ -30,6 +31,7 @@ export class DessinComponent implements AfterViewInit {
   private ctx: CanvasRenderingContext2D | any;
   private drawing = false;
 
+  constructor(private apiService: ApiService) { }
 
   ngAfterViewInit() {
     this.ctx = this.canvas.nativeElement.getContext('2d')!;
@@ -66,8 +68,8 @@ export class DessinComponent implements AfterViewInit {
   }
 
   goEpicycloid() {
-    // envoie value (correspond à la fréquence d'échantillonage) et tab de points
-    console.log(this.tabPoint);
-    console.log(this.value);
+    this.apiService.getTransformation(this.tabPoint, this.value).subscribe(
+      res => console.log(res),
+    )
   }
 }
