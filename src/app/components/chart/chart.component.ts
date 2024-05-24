@@ -51,6 +51,7 @@ export class ChartComponent implements OnInit, OnDestroy {
         this.subscription = this.apiService.getEpicycloidCoordinates(<EpicycloidModel>epicycloid, ChartComponent.nbPoints).subscribe(data => {
           this.data = this.prepareChartData(data);
           this.createChart();
+          console.log(data);
         });
       }
     }

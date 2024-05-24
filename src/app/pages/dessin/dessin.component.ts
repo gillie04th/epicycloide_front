@@ -5,6 +5,7 @@ import {PaginatorModule} from "primeng/paginator";
 import {Point} from "../../models/point.model";
 import {ButtonComponent} from "../../components/button/button.component";
 import {ApiService} from "../../services/ApiService";
+import {EpicycloidModel} from "../../models/epicycloid.model";
 
 @Component({
   selector: 'app-dessin',
@@ -27,11 +28,14 @@ export class DessinComponent implements AfterViewInit {
   equation!: string;
   txt_equation: string = "Formule : ";
 
-  @ViewChild('canvas', { static: false })  canvas: ElementRef<HTMLCanvasElement> | any;
+  @ViewChild('canvas', {static: false}) canvas: ElementRef<HTMLCanvasElement> | any;
+  @ViewChild(ChartComponent) chartComponent: ChartComponent | undefined;
+  @ViewChild('zoneDessin') zoneDessin: ElementRef | undefined;
   private ctx: CanvasRenderingContext2D | any;
   private drawing = false;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+  }
 
   ngAfterViewInit() {
     this.ctx = this.canvas.nativeElement.getContext('2d')!;
@@ -69,7 +73,17 @@ export class DessinComponent implements AfterViewInit {
 
   goEpicycloid() {
     this.apiService.getTransformation(this.tabPoint, this.value).subscribe(
-      res => console.log(res),
+      res => {
+        console.log(res);
+        this.generatePoints(res);
+      }
     )
+  }
+
+  generatePoints(epicycloid: EpicycloidModel) {
+
+    let rolling: EpicycloidModel | undefined = undefined;
+
+    this.chartComponent?.requestData(epicycloid);
   }
 }

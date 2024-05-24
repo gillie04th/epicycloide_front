@@ -1,5 +1,4 @@
 
-
 .disposition {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -31,39 +30,41 @@
 }
 
 .zone-dessin {
+  display: grid;
   grid-column: 1;
   grid-row: 2 / 4;
-  border:1px solid #e15e6e;
+  border: 1px solid #e15e6e;
   border-radius: 18px 0px 0px 18px;
   margin-left: 20px;
+  align-content: center;
+  justify-content: center;
 }
 
 .draw-canva {
   cursor: crosshair;
-  height: 100%;
 }
 
 .four {
   grid-column: 2;
   grid-row: 2 /4;
-  border:1px solid #e15e6e;
+  border: 1px solid #e15e6e;
   border-radius: 0px 18px 18px 0px;
   margin-right: 20px;
-  display : grid;
+  display: grid;
   grid-template-rows: 10% 90%;
 }
 
-.zone-equation{
+.zone-equation {
   grid-row: 1;
   border-bottom: 1px solid #e15e6e;
   margin-top: 20px;
 }
 
-.chart{
+.chart {
   grid-row: 2;
 }
 
-.barre-controle{
+.barre-controle {
   grid-column: 1/4;
   grid-row: 4;
 
@@ -71,7 +72,7 @@
   margin-left: 20px;
   margin-right: 20px;
 
-  display : grid;
+  display: grid;
   grid-template-columns: 10% 10% 55% 5% 10%;
   gap: 20px;
 }
@@ -83,7 +84,7 @@
   cursor: pointer;
 }
 
-.txt-echantillonage{
+.txt-echantillonage {
   grid-column: 2;
   text-align: center;
 }
@@ -93,7 +94,7 @@
   margin: 30px 0px;
 }
 
-.input-echantillonage{
+.input-echantillonage {
   grid-column: 4;
   width: 80%;
   text-align: center;
@@ -119,6 +120,7 @@
   border-radius: 50%;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
+
 .p-slider.p-slider-horizontal {
   height: 0.286rem;
 }
@@ -131,4 +133,10 @@ p-slider .p-slider-handle:focus {
   outline: 0 none;
   outline-offset: 0;
   box-shadow: 0 0 0 0.08rem #e0c4ae;
+}
+
+.chart {
+  width: 100%;
+  max-height: 100%;
+  height: 64vh;
 }
