@@ -51,7 +51,7 @@
   border-radius: 0px 18px 18px 0px;
   margin-right: 20px;
   display: grid;
-  grid-template-rows: 10% 90%;
+  /*grid-template-rows: 10% 90%;*/
 }
 
 .zone-equation {
@@ -62,8 +62,10 @@
 
 .chart {
   grid-row: 2;
+  width: 100%;
+  max-height: 100%;
+  height: 64vh;
 }
-
 .barre-controle {
   grid-column: 1/4;
   grid-row: 4;
@@ -133,10 +135,4 @@ p-slider .p-slider-handle:focus {
   outline: 0 none;
   outline-offset: 0;
   box-shadow: 0 0 0 0.08rem #e0c4ae;
-}
-
-.chart {
-  width: 100%;
-  max-height: 100%;
-  height: 64vh;
 }
